@@ -10,7 +10,7 @@ function CartEmpty() {
       </div>
       <div className="no-item-content-head">Your cart is empty! </div>
       <div className="no-item-content-text">Add items to it now. </div>
-      <Link to="/cart">
+      <Link to="/products">
         <button className="button-primary"> Shop Now </button>
       </Link>
     </div>

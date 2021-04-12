@@ -12,7 +12,7 @@ function WishlistEmpty() {
       <div className="no-item-content-text">
         You have no items in your wishlist. Start adding!
       </div>
-      <Link to="/cart">
+      <Link to="/products">
         <button className="button-primary"> Shop Now </button>
       </Link>
     </div>
