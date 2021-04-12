@@ -1,6 +1,7 @@
 import React from "react";
 import { useDataContext } from "../context/data-context";
 import CartDetails from "./CartDetails";
+import CartEmpty from "./CartEmpty";
 import { CartItem } from "./CartItem";
 
 function Cart() {
@@ -8,13 +9,16 @@ function Cart() {
 
   return (
     <div>
-      <div className="h2 text-center">This is Cart {cartItems.length}</div>
-      <div className="cart-container">
-        {cartItems.map((item) => {
-          return <CartItem key={item.id} cartItem={item} />;
-        })}
-        <CartDetails />
-      </div>
+      {cartItems.length > 0 ? (
+        <div className="cart-container">
+          {cartItems.map((item) => {
+            return <CartItem key={item.id} cartItem={item} />;
+          })}
+          <CartDetails />
+        </div>
+      ) : (
+        <CartEmpty />
+      )}
     </div>
   );
 }

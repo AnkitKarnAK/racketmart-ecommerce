@@ -60,7 +60,7 @@ export const CartItem = ({ cartItem }) => {
                 dispatch({ type: "ADD_TO_CART", payload: cartItem });
               }}
             >
-              <img src={deleteIcon} alt="" srcset="" />
+              <img src={deleteIcon} alt="" />
             </div>
           )}
           <div className="cartitem-quantity">{cartItem.quantity}</div>

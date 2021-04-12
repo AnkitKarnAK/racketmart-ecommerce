@@ -26,7 +26,7 @@ export const WishlistItem = ({ wishlistItem }) => {
             dispatch({ type: "ADD_TO_WISHLIST", payload: wishlistItem });
           }}
         >
-          <img src={deleteIcon} alt="" srcset="" />
+          <img src={deleteIcon} alt="" />
         </div>
       </div>
       <div className="card-body">

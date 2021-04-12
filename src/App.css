@@ -347,6 +347,40 @@ button.button-disabled{
 }
 .order-container>.order-button{
     flex-grow: 1.5;
+    font-size: 1rem;
+}
+
+.no-item-container{
+    width: 30rem;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.no-item-image-container>img{
+    width: 100%;
+}
+
+.no-item-container>.no-item-content-head{
+    margin: 1rem auto;
+    font-size: 2rem;
+    color: #878787;
+}
+.no-item-container>.no-item-content-text{
+    margin: 0 auto;
+    font-size: 1.2rem;
+}
+.no-item-container>a{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+ .no-item-container button{
+    font-size: 1rem;
+    width: 10rem;
+    margin: 1rem 0;
 }
 
 
