@@ -323,9 +323,14 @@ button.button-disabled{
     padding: 1rem 0;
     
 }
-
+ins{
+    text-decoration: none;
+}
 .text-color-green{
     color: var(--success-color);
+}
+.text-color-red{
+    color: var(--error-color);
 }
 
 .order-container{

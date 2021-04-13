@@ -21,7 +21,7 @@ function CartDetails() {
         <div className="details-title text-uppercase h3">Price Details</div>
         <div className="item-details-body">
           <div className="item-detail-content">
-            <div className="item-detail-key">Price</div>
+            <div className="item-detail-key">Actual Price</div>
             <div className="item-detail-value">{totalItemsPrice}</div>
           </div>
           <div className="item-detail-content">
@@ -35,7 +35,10 @@ function CartDetails() {
           <div className="item-detail-content">
             <div className="item-detail-key">Delivery Charges</div>
             {totalItemsPrice > 499 ? (
-              <div className="item-detail-value text-color-green">Free</div>
+              <div className="item-detail-value">
+                <del className="text-color-red"> Rs 49</del>{" "}
+                <ins className="text-color-green">Free</ins>
+              </div>
             ) : (
               <div className="item-detail-value">Rs 49</div>
             )}
