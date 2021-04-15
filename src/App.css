@@ -403,6 +403,7 @@ ins{
 
 .home-container{
     width: 100vw;
+    max-width: 100%;
    
 }
 .banner-image-container{
