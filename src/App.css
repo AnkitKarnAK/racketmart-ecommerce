@@ -450,5 +450,9 @@ ins{
 
 /* For tablets or smaller laptop screens */
 @media screen and (min-width: 480px) {
-    
+    .banner-button-container {
+        position: absolute;
+        top: 45%;
+        left: 40%
+    }
 }

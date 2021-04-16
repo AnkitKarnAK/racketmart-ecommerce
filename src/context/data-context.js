@@ -14,6 +14,7 @@ export const DataProvider = ({ children }) => {
     sortBy: null,
     includeOutOfStock: true,
     showFastDelivery: true,
+    priceRange: 1000,
   });
 
   const wishlistedItems = state.wishlistedItemsWithStatus.filter((item) =>

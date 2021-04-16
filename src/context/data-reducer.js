@@ -18,6 +18,9 @@ export const dataReducer = (state, action) => {
     case "TOGGLE_DELIVERY":
       return { ...state, showFastDelivery: !state.showFastDelivery };
 
+    case "SET_PRICE_RANGE":
+      return { ...state, priceRange: action.payload };
+
     case "CLEAR_FILTER":
       return {
         ...state,

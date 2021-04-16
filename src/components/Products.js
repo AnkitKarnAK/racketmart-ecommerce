@@ -5,7 +5,13 @@ import FilterProducts from "./FilterProducts";
 
 function Products() {
   const {
-    state: { products, sortBy, includeOutOfStock, showFastDelivery },
+    state: {
+      products,
+      sortBy,
+      includeOutOfStock,
+      showFastDelivery,
+      priceRange,
+    },
   } = useDataContext();
 
   function getSortedData(productList, sortBy) {
@@ -25,11 +31,18 @@ function Products() {
       .filter(({ inStock }) => (includeOutOfStock ? true : inStock));
   }
 
+  function getRangedData(productList, priceRange) {
+    return productList.filter(
+      (productItem) => Number(productItem.price) < priceRange
+    );
+  }
+
   const sortedData = getSortedData(products, sortBy);
   const filteredData = getFilteredData(sortedData, {
     includeOutOfStock,
     showFastDelivery,
   });
+  const rangedData = getRangedData(filteredData, priceRange);
 
   return (
     <div>
@@ -39,7 +52,7 @@ function Products() {
       </div>
 
       <div className="product-container">
-        {filteredData.map((item) => {
+        {rangedData.map((item) => {
           return <ProductItem key={item.id} productItem={item} />;
         })}
       </div>
