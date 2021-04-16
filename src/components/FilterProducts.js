@@ -3,7 +3,13 @@ import { useDataContext } from "../context/data-context";
 function FilterProducts() {
   const {
     dispatch,
-    state: { sortBy, includeOutOfStock, showFastDelivery, priceRange },
+    state: {
+      sortBy,
+      includeOutOfStock,
+      showFastDelivery,
+      priceRange,
+      searchedProduct,
+    },
   } = useDataContext();
 
   return (
@@ -19,6 +25,28 @@ function FilterProducts() {
       </div>
       <fieldset
         style={{
+          borderColor: "#2874f0",
+          borderStyle: "solid",
+        }}
+      >
+        <legend>Search</legend>
+        <div className="input-box">
+          <input
+            class="effect-1"
+            type="text"
+            placeholder="Search your product"
+            value={searchedProduct}
+            onChange={(e) =>
+              dispatch({ type: "SEARCH_FILTER", payload: e.target.value })
+            }
+          />
+          <span class="focus-border"></span>
+        </div>
+      </fieldset>
+
+      <fieldset
+        style={{
+          marginTop: "1rem",
           borderColor: "#2874f0",
           borderStyle: "solid",
         }}

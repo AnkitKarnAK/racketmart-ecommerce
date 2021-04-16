@@ -3,6 +3,9 @@ export const dataReducer = (state, action) => {
     case "GET_PRODUCTS":
       return { ...state, products: action.payload };
 
+    case "SEARCH_FILTER":
+      return { ...state, searchedProduct: action.payload };
+
     case "SORT_BY":
       return {
         ...state,
@@ -27,6 +30,8 @@ export const dataReducer = (state, action) => {
         sortBy: null,
         includeOutOfStock: false,
         showFastDelivery: false,
+        priceRange: 1000,
+        searchedProduct: "",
       };
 
     case "ADD_TO_CART":

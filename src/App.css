@@ -445,8 +445,16 @@ ins{
     max-width: 100%;
 }
 
-
-
+.input-box>input {
+    color: var(--secondary-color);
+    width: 50%;
+}
+.effect-1{
+    border-bottom: 2px solid #ccc;
+}
+.effect-1:focus~.focus-border {
+    width: 50%;
+}
 
 /* For tablets or smaller laptop screens */
 @media screen and (min-width: 480px) {

@@ -11,8 +11,15 @@ function Products() {
       includeOutOfStock,
       showFastDelivery,
       priceRange,
+      searchedProduct,
     },
   } = useDataContext();
+
+  function getSearchedData(productList, searchedProduct) {
+    return productList.filter((product) =>
+      product.name.toLowerCase().includes(searchedProduct.toLowerCase())
+    );
+  }
 
   function getSortedData(productList, sortBy) {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
@@ -36,8 +43,8 @@ function Products() {
       (productItem) => Number(productItem.price) < priceRange
     );
   }
-
-  const sortedData = getSortedData(products, sortBy);
+  const searchedData = getSearchedData(products, searchedProduct);
+  const sortedData = getSortedData(searchedData, sortBy);
   const filteredData = getFilteredData(sortedData, {
     includeOutOfStock,
     showFastDelivery,
@@ -48,7 +55,7 @@ function Products() {
     <div>
       <FilterProducts />
       <div className="h2 text-center">
-        Available Products: {filteredData.length}
+        Available Products: {rangedData.length}
       </div>
 
       <div className="product-container">
