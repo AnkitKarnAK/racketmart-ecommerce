@@ -3,6 +3,7 @@ import heartOutline from "../assests/heart-outline.svg";
 import deleteIcon from "../assests/trash.svg";
 import { useDataContext } from "../context/data-context";
 import { checkStatus } from "../context/data-reducer";
+import { toast } from "react-toastify";
 
 export const CartItem = ({ cartItem }) => {
   const { state, dispatch } = useDataContext();
@@ -13,20 +14,28 @@ export const CartItem = ({ cartItem }) => {
       </div>
       <div className="card-badge">New</div>
 
-      <div
-        className="wishlist-icon-container"
-        onClick={() => {
-          dispatch({ type: "ADD_TO_WISHLIST", payload: cartItem });
-        }}
-      >
-        {checkStatus(state.wishlistedItemsWithStatus, cartItem.id) ? (
+      {checkStatus(state.wishlistedItemsWithStatus, cartItem.id) ? (
+        <div
+          className="wishlist-icon-container"
+          onClick={() => {
+            dispatch({ type: "ADD_TO_WISHLIST", payload: cartItem });
+            toast.dark(`${cartItem.name} remove from Wishlist`);
+          }}
+        >
           <img src={heartSolid} alt="liked" className="wishlist-icon" />
-        ) : (
+        </div>
+      ) : (
+        <div
+          className="wishlist-icon-container"
+          onClick={() => {
+            dispatch({ type: "ADD_TO_WISHLIST", payload: cartItem });
+            toast.info(`${cartItem.name} added to Wishlist`);
+          }}
+        >
           <img src={heartOutline} alt="like" className="wishlist-icon" />
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* <div className="card-dismiss">X</div> */}
       <div className="card-body-horizontal">
         <div className="h3">{cartItem.name}</div>
         <div className="card-content-horizontal">
@@ -58,6 +67,7 @@ export const CartItem = ({ cartItem }) => {
               className="delete-icon"
               onClick={() => {
                 dispatch({ type: "ADD_TO_CART", payload: cartItem });
+                toast.error(`${cartItem.name} removed from Cart`);
               }}
             >
               <img src={deleteIcon} alt="" />
@@ -76,6 +86,7 @@ export const CartItem = ({ cartItem }) => {
             className="remove-cart-button button-primary"
             onClick={() => {
               dispatch({ type: "ADD_TO_CART", payload: cartItem });
+              toast.error(`${cartItem.name} removed from Cart`);
             }}
           >
             Remove

@@ -1,5 +1,7 @@
 import "./App.css";
 import React, { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 import Products from "./components/Products";
@@ -38,6 +40,19 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/*" element={<Error404 />} />
       </Routes>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        limit={3}
+      />
     </div>
   );
 }

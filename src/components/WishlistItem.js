@@ -2,6 +2,7 @@ import { useDataContext } from "../context/data-context";
 import { checkStatus } from "../context/data-reducer";
 import deleteIcon from "../assests/trash.svg";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const WishlistItem = ({ wishlistItem }) => {
   const { dispatch, state } = useDataContext();
@@ -24,6 +25,7 @@ export const WishlistItem = ({ wishlistItem }) => {
           className="delete-icon card-delete"
           onClick={() => {
             dispatch({ type: "ADD_TO_WISHLIST", payload: wishlistItem });
+            toast.error(`${wishlistItem.name} removed from Wishlist`);
           }}
         >
           <img src={deleteIcon} alt="" />
@@ -59,6 +61,7 @@ export const WishlistItem = ({ wishlistItem }) => {
             onClick={() => {
               dispatch({ type: "ADD_TO_CART", payload: wishlistItem });
               dispatch({ type: "ADD_TO_WISHLIST", payload: wishlistItem });
+              toast.success(`${wishlistItem.name} moved to Cart`);
             }}
           >
             Move to Cart

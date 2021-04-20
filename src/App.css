@@ -456,6 +456,23 @@ ins{
     width: 50%;
 }
 
+.Toastify__toast--info {
+   background-color: var(--primary-color) !important;
+}
+.Toastify__toast--success {
+    background-color: var(--success-color) !important;
+}
+.Toastify__toast--error {
+    background-color: var(--error-color) !important;
+}
+.Toastify__toast--dark {
+    background-color:  var(--primary-dark) !important;
+}
+
+.Toastify__progress-bar--dark {
+    background-color: var(--primary-light) !important;
+    }
+
 /* For tablets or smaller laptop screens */
 @media screen and (min-width: 480px) {
     .banner-button-container {

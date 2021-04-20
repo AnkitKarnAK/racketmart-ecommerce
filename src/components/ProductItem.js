@@ -3,6 +3,7 @@ import { checkStatus } from "../context/data-reducer";
 import { Link } from "react-router-dom";
 import heartOutline from "../assests/heart-outline-bold.svg";
 import heartSolid from "../assests/heart-solid.svg";
+import { toast } from "react-toastify";
 
 export const ProductItem = ({ productItem }) => {
   const { state, dispatch } = useDataContext();
@@ -21,18 +22,27 @@ export const ProductItem = ({ productItem }) => {
           {productItem.inStock ? "New" : "Out of Stock"}
         </div>
 
-        <div
-          className="wishlist-icon-container"
-          onClick={() => {
-            dispatch({ type: "ADD_TO_WISHLIST", payload: productItem });
-          }}
-        >
-          {checkStatus(state.wishlistedItemsWithStatus, productItem.id) ? (
+        {checkStatus(state.wishlistedItemsWithStatus, productItem.id) ? (
+          <div
+            className="wishlist-icon-container"
+            onClick={() => {
+              dispatch({ type: "ADD_TO_WISHLIST", payload: productItem });
+              toast.dark(`${productItem.name} removed from Wishlist`);
+            }}
+          >
             <img src={heartSolid} alt="liked" className="wishlist-icon" />
-          ) : (
+          </div>
+        ) : (
+          <div
+            className="wishlist-icon-container"
+            onClick={() => {
+              dispatch({ type: "ADD_TO_WISHLIST", payload: productItem });
+              toast.info(`${productItem.name} added to Wishlist`);
+            }}
+          >
             <img src={heartOutline} alt="like" className="wishlist-icon" />
-          )}
-        </div>
+          </div>
+        )}
       </div>
       <div className="card-body">
         <div className="h3">{productItem.name}</div>
@@ -61,6 +71,7 @@ export const ProductItem = ({ productItem }) => {
             }
             onClick={() => {
               dispatch({ type: "ADD_TO_CART", payload: productItem });
+              toast.success(`${productItem.name} added to Cart`);
             }}
           >
             Add to Cart
