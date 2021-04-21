@@ -458,7 +458,7 @@ ins{
 
 .Toastify__toast-container {
     max-width: 95vw;
-    
+    padding-left: 5rem !important;
 }
 
 .Toastify__toast--info {
@@ -484,5 +484,9 @@ ins{
         position: absolute;
         top: 45%;
         left: 40%
+    }
+
+    .Toastify__toast-container {
+        padding-left: 0rem !important;
     }
 }
