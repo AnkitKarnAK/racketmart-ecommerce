@@ -456,6 +456,11 @@ ins{
     width: 50%;
 }
 
+.Toastify__toast-container {
+    max-width: 95vw;
+    padding: 0 2rem;
+}
+
 .Toastify__toast--info {
    background-color: var(--primary-color) !important;
 }
