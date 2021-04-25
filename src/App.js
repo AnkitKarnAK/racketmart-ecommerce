@@ -11,6 +11,9 @@ import { apiRequest } from "./api/api-request";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import Error404 from "./components/Error404";
+import Login from "./components/Login";
+import { PrivateRoute } from "./components/PrivateRoute";
+import Profile from "./components/Profile";
 
 function App() {
   const { dispatch } = useDataContext();
@@ -32,13 +35,14 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/*" element={<Error404 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Error404 />} />
+        <PrivateRoute path="/cart" element={<Cart />} />
+        <PrivateRoute path="/wishlist" element={<Wishlist />} />
+        <PrivateRoute path="/profile" element={<Profile />} />
       </Routes>
 
       <ToastContainer

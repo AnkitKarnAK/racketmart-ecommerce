@@ -5,6 +5,7 @@ import App from "./App";
 import setupMockServer from "./api/mock.server";
 import { DataProvider } from "./context/data-context";
 import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProvider } from "./context/auth-context";
 
 setupMockServer();
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <DataProvider>
       <Router>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </Router>
     </DataProvider>
   </React.StrictMode>,

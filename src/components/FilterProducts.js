@@ -30,7 +30,7 @@ function FilterProducts() {
         }}
       >
         <legend>Search</legend>
-        <div className="input-box">
+        <div className="input-box search-box">
           <input
             class="effect-1"
             type="text"
