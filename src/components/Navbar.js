@@ -128,18 +128,36 @@ export const Navbar = () => {
               </div>
             </>
           ) : (
-            <div className="button-badge-container">
-              <button className="nav-button">
-                <NavLink
-                  to="/login"
-                  className="nav-icon-container"
-                  activeClassName="nav-link-active"
-                >
-                  <img src={userLoginIcon} alt="" className="nav-icons" />
-                  Login
-                </NavLink>
-              </button>
-            </div>
+            <>
+              <div className="button-badge-container display-toggle-mobile">
+                <button className="nav-button">
+                  <NavLink
+                    to="/products"
+                    className="nav-icon-container"
+                    activeClassName="nav-link-active"
+                  >
+                    <img
+                      src={badmintonSvgIcon}
+                      alt="Products"
+                      className="nav-icons"
+                    />
+                    Products
+                  </NavLink>
+                </button>
+              </div>
+              <div className="button-badge-container">
+                <button className="nav-button">
+                  <NavLink
+                    to="/login"
+                    className="nav-icon-container"
+                    activeClassName="nav-link-active"
+                  >
+                    <img src={userLoginIcon} alt="" className="nav-icons" />
+                    Login
+                  </NavLink>
+                </button>
+              </div>
+            </>
           )}
         </div>
       </nav>

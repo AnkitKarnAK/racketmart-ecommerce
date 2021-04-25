@@ -73,6 +73,9 @@ html,body{
 .nav .display-toggle{
     display: none;
 }
+.nav .display-toggle-mobile{
+    display: block;
+}
 
 .nav>.nav-links button {
     font-size: 1rem;
@@ -725,6 +728,10 @@ ins{
     .nav .display-toggle{
         display: block;
     }
+    .nav .display-toggle-mobile{
+        display: none;
+    }
+    
 
     .banner-button-container {
         position: absolute;
