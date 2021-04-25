@@ -5,7 +5,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 const Login = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { isUserLogin, loginWithCredential } = useAuthContext();
+  const { loginWithCredential } = useAuthContext();
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -15,10 +15,9 @@ const Login = () => {
     loginWithCredential(userEmail, userPassword);
     navigate(state?.from ? state.from : "/");
   };
+
   return (
     <>
-      <div>{isUserLogin ? "You're logged In" : "you're logged out"}</div>
-
       <div className="login-container">
         <div className="h2 login-title">LOGIN</div>
         <form className="login-form" onSubmit={loginHandler}>
@@ -32,10 +31,10 @@ const Login = () => {
               className="effect-1"
               type="email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              maxlength="50"
+              maxLength="50"
               required
             />
-            <span class="focus-border"></span>
+            <span className="focus-border"></span>
           </div>
 
           <div className="input-box login-password-input">
@@ -48,10 +47,10 @@ const Login = () => {
               className="effect-1"
               type="password"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              maxlength="20"
+              maxLength="20"
               required
             />
-            <span class="focus-border"></span>
+            <span className="focus-border"></span>
           </div>
 
           <button className="button-primary login-button" type="submit">

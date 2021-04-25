@@ -6,7 +6,9 @@ const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [isUserLogin, setIsUserLogin] = useState(false);
+  const [isUserLogin, setIsUserLogin] = useState(
+    localStorage?.getItem("login") || false
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
