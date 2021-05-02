@@ -32,7 +32,7 @@ function FilterProducts() {
         <legend>Search</legend>
         <div className="input-box search-box">
           <input
-            class="effect-1"
+            className="effect-1"
             type="text"
             placeholder="Search your product"
             value={searchedProduct}
@@ -40,7 +40,7 @@ function FilterProducts() {
               dispatch({ type: "SEARCH_FILTER", payload: e.target.value })
             }
           />
-          <span class="focus-border"></span>
+          <span className="focus-border"></span>
         </div>
       </fieldset>
 
