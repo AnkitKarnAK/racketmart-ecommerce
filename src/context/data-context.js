@@ -14,7 +14,7 @@ export const DataProvider = ({ children }) => {
     sortBy: null,
     includeOutOfStock: true,
     showFastDelivery: true,
-    priceRange: 1000,
+    priceRange: 2500,
     searchedProduct: "",
   });
 

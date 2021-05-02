@@ -106,9 +106,9 @@ function FilterProducts() {
           Maximum Price:
           <input
             type="range"
-            min={50}
-            step={50}
-            max={1000}
+            min={200}
+            step={100}
+            max={2500}
             value={priceRange}
             onChange={(e) =>
               dispatch({ type: "SET_PRICE_RANGE", payload: e.target.value })

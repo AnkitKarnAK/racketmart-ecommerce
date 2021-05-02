@@ -30,7 +30,7 @@ export const dataReducer = (state, action) => {
         sortBy: null,
         includeOutOfStock: false,
         showFastDelivery: false,
-        priceRange: 1000,
+        priceRange: 2500,
         searchedProduct: "",
       };
 
