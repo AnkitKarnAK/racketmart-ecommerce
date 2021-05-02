@@ -11,7 +11,7 @@ const Wishlist = () => {
       {wishlistedItems.length > 0 ? (
         <div className="wishlist-container">
           {wishlistedItems.map((item) => (
-            <WishlistItem key={item._id} wishlistItem={item} />
+            <WishlistItem key={item.id} wishlistItem={item} />
           ))}
         </div>
       ) : (

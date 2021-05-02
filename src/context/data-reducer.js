@@ -35,10 +35,10 @@ export const dataReducer = (state, action) => {
       };
 
     case "ADD_TO_CART":
-      return isAlreadyAdded(state.itemsInCart, action.payload._id)
+      return isAlreadyAdded(state.itemsInCart, action.payload.id)
         ? {
             ...state,
-            itemsInCart: toggleStatus(state.itemsInCart, action.payload._id),
+            itemsInCart: toggleStatus(state.itemsInCart, action.payload.id),
           }
         : {
             ...state,
@@ -49,12 +49,12 @@ export const dataReducer = (state, action) => {
           };
 
     case "ADD_TO_WISHLIST":
-      return isAlreadyAdded(state.wishlistedItemsWithStatus, action.payload._id)
+      return isAlreadyAdded(state.wishlistedItemsWithStatus, action.payload.id)
         ? {
             ...state,
             wishlistedItemsWithStatus: toggleStatus(
               state.wishlistedItemsWithStatus,
-              action.payload._id
+              action.payload.id
             ),
           }
         : {
@@ -72,7 +72,7 @@ export const dataReducer = (state, action) => {
       return {
         ...state,
         itemsInCart: state.itemsInCart.map((item) =>
-          item._id === action.payload._id
+          item.id === action.payload.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
@@ -82,7 +82,7 @@ export const dataReducer = (state, action) => {
       return {
         ...state,
         itemsInCart: state.itemsInCart.map((item) =>
-          item._id === action.payload._id
+          item.id === action.payload.id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         ),
@@ -95,14 +95,14 @@ export const dataReducer = (state, action) => {
 
 export const isAlreadyAdded = (itemsArray, id) => {
   for (let itemInArray of itemsArray) {
-    if (itemInArray._id === id) return true;
+    if (itemInArray.id === id) return true;
   }
   return false;
 };
 
 export const toggleStatus = (itemsArray, id) => {
   return itemsArray.map((item) => {
-    if (item._id === id) {
+    if (item.id === id) {
       return { ...item, status: { exists: !item.status.exists } };
     } else {
       return item;
@@ -117,7 +117,7 @@ export const addNewItem = (itemsArray, item) => [
 
 export const checkStatus = (itemsArray, id) => {
   for (let itemInArray of itemsArray) {
-    if (itemInArray._id === id && itemInArray.status.exists) return true;
+    if (itemInArray.id === id && itemInArray.status.exists) return true;
   }
   return false;
 };

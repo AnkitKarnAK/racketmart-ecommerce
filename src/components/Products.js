@@ -60,7 +60,7 @@ function Products() {
 
       <div className="product-container">
         {rangedData.map((item) => {
-          return <ProductItem key={item._id} productItem={item} />;
+          return <ProductItem key={item.id} productItem={item} />;
         })}
       </div>
     </div>

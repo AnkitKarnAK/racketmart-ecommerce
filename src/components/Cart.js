@@ -12,7 +12,7 @@ function Cart() {
       {cartItems.length > 0 ? (
         <div className="cart-container">
           {cartItems.map((item) => {
-            return <CartItem key={item._id} cartItem={item} />;
+            return <CartItem key={item.id} cartItem={item} />;
           })}
           <CartDetails />
         </div>
