@@ -151,6 +151,17 @@ button.button-disabled{
 }
 .card-container{
     margin: 1rem;
+    border: 1px solid #f0f0f0;
+}
+.card-container>.card-image{
+    height: 12rem;
+    border-bottom: 1px solid #fafafa;
+}
+.card-container>.card-image>img{
+    height: 100%;
+    display: block;
+    margin: auto;
+    
 }
 .card-container>.card-image.outofstock:before{
     content: '';
@@ -165,7 +176,7 @@ button.button-disabled{
     background-color: var(--error-color);
 }
 .card-container>.card-image>.card-badge.outofstock{
-    top: 77%;
+    top: 80%;
     left: 0;
     width: 100%;
     

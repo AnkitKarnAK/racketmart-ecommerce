@@ -44,7 +44,7 @@ export const WishlistItem = ({ wishlistItem }) => {
               : "Delivery : 3 days minimum"}
           </div>
         </div>
-        {checkStatus(state.itemsInCart, wishlistItem.id) ? (
+        {checkStatus(state.itemsInCart, wishlistItem._id) ? (
           <Link to="/cart">
             <button className="button-secondary link-button">
               Already in Cart

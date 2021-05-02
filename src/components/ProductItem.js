@@ -22,7 +22,7 @@ export const ProductItem = ({ productItem }) => {
           {productItem.inStock ? "New" : "Out of Stock"}
         </div>
 
-        {checkStatus(state.wishlistedItemsWithStatus, productItem.id) ? (
+        {checkStatus(state.wishlistedItemsWithStatus, productItem._id) ? (
           <div
             className="wishlist-icon-container"
             onClick={() => {
@@ -45,11 +45,24 @@ export const ProductItem = ({ productItem }) => {
         )}
       </div>
       <div className="card-body">
-        <div className="h3">{productItem.name}</div>
+        <div className="h3 text-center">{productItem.name}</div>
         <div className="card-content">
           <p>
             Rs {productItem.price}{" "}
-            <span className="primary-color">{productItem.offer}</span>
+            <span style={{ color: "#878787" }}>
+              <del> Rs {productItem.totalPrice} </del>
+            </span>
+            <span className="primary-color"> {productItem.discount}</span>
+          </p>
+          <p>
+            Rating:{" "}
+            <span
+              className={
+                productItem.rating < 4 ? "text-color-red" : "text-color-green"
+              }
+            >
+              {productItem.rating}★
+            </span>
           </p>
           <div>
             {productItem.fastDelivery
@@ -57,7 +70,7 @@ export const ProductItem = ({ productItem }) => {
               : "Delivery : 3 days minimum"}
           </div>
         </div>
-        {checkStatus(state.itemsInCart, productItem.id) ? (
+        {checkStatus(state.itemsInCart, productItem._id) ? (
           <Link to="/cart">
             <button className="button-secondary link-button">Go to Cart</button>
           </Link>

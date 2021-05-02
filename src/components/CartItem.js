@@ -14,7 +14,7 @@ export const CartItem = ({ cartItem }) => {
       </div>
       <div className="card-badge">New</div>
 
-      {checkStatus(state.wishlistedItemsWithStatus, cartItem.id) ? (
+      {checkStatus(state.wishlistedItemsWithStatus, cartItem._id) ? (
         <div
           className="wishlist-icon-container"
           onClick={() => {
