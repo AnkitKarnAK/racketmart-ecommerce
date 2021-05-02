@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const apiRequest = async ({ url, requestType }) => {
+export const getProductsFromServer = async ({ url, requestType }) => {
   switch (requestType) {
     case "GET": {
       const res = await axios.get(url);

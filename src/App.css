@@ -152,6 +152,13 @@ button.button-disabled{
 .card-container{
     margin: 1rem;
 }
+.card-container>.card-image{
+    height: 11rem;
+}
+.card-image>img{
+   height: 100%;
+   width: fit-content; 
+}
 .card-container>.card-image.outofstock:before{
     content: '';
     position: absolute;
@@ -159,7 +166,7 @@ button.button-disabled{
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6)
+    background: rgba(0, 0, 0, 0.4)
 }
 .card-container>.card-image>.card-badge.new{
     background-color: var(--error-color);

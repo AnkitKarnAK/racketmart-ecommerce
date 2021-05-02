@@ -22,7 +22,7 @@ export const ProductItem = ({ productItem }) => {
           {productItem.inStock ? "New" : "Out of Stock"}
         </div>
 
-        {checkStatus(state.wishlistedItemsWithStatus, productItem.id) ? (
+        {checkStatus(state.wishlistedItemsWithStatus, productItem._id) ? (
           <div
             className="wishlist-icon-container"
             onClick={() => {
@@ -57,7 +57,7 @@ export const ProductItem = ({ productItem }) => {
               : "Delivery : 3 days minimum"}
           </div>
         </div>
-        {checkStatus(state.itemsInCart, productItem.id) ? (
+        {checkStatus(state.itemsInCart, productItem._id) ? (
           <Link to="/cart">
             <button className="button-secondary link-button">Go to Cart</button>
           </Link>

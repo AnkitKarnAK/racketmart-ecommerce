@@ -19,11 +19,11 @@ export const DataProvider = ({ children }) => {
   });
 
   const wishlistedItems = state.wishlistedItemsWithStatus.filter((item) =>
-    checkStatus(state.wishlistedItemsWithStatus, item.id)
+    checkStatus(state.wishlistedItemsWithStatus, item._id)
   );
 
   const cartItems = state.itemsInCart.filter((item) =>
-    checkStatus(state.itemsInCart, item.id)
+    checkStatus(state.itemsInCart, item._id)
   );
 
   return (

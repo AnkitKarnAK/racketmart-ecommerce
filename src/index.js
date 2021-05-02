@@ -7,7 +7,7 @@ import { DataProvider } from "./context/data-context";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/auth-context";
 
-setupMockServer();
+// setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
