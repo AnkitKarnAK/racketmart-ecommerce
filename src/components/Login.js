@@ -1,19 +1,30 @@
 import React, { useState } from "react";
+import Loader from "react-loader-spinner";
+
 import { useAuthContext } from "../context/auth-context";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { loginWithCredential } = useAuthContext();
+  const { loginUser } = useAuthContext();
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
-  const loginHandler = (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
-    loginWithCredential(userEmail, userPassword);
-    navigate(state?.from ? state.from : "/");
+    setLoading(true);
+    setError("");
+    const res = await loginUser(userEmail, userPassword);
+    if (res?.status === 401 || res?.status === 500) {
+      setError(res?.data?.message || "Something went wrong, please try again!");
+      setLoading(false);
+      return;
+    }
+    navigate(state?.from ? state.from : "/products");
   };
 
   return (
@@ -57,6 +68,15 @@ const Login = () => {
             LOGIN
           </button>
 
+          <div
+            style={{
+              display: error !== "" ? "block" : "none",
+              color: "#ef4444",
+            }}
+          >
+            {error}
+          </div>
+
           <div className="login-other-link-text">
             Forgot your password?{" "}
             <Link to="/forgot" className="login-other-link">
@@ -74,6 +94,11 @@ const Login = () => {
             </Link>
           </div>
         </form>
+        {isLoading && (
+          <div className="loading-overlay">
+            <Loader type="Oval" color="#2874f0" height={80} width={80} />
+          </div>
+        )}
       </div>
     </>
   );

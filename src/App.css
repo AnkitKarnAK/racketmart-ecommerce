@@ -536,6 +536,12 @@ ins{
     text-decoration: underline;
 }
 
+.loading-overlay{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
 
 .profile-container{
     width: 30rem;
@@ -743,6 +749,11 @@ ins{
         display: none;
     }
     
+    .loading-overlay{
+        position: absolute;
+        top: 63%;
+        left: 47%;
+    }
 
     .banner-button-container {
         position: absolute;

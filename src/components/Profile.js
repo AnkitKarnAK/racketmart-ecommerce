@@ -4,13 +4,13 @@ import profilePicIcon from "../assests/profile-round-border-icon.svg";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const { logoutUser } = useAuthContext();
+  const { username, logoutUser } = useAuthContext();
   return (
     <div className="profile-container">
       <h1>Profile page</h1>
       <div className="profile-user-info">
         <img className="avatar" src={profilePicIcon} alt="Profile" />{" "}
-        <span className="profile-user-name">Ankit</span>
+        <span className="profile-user-name">{username}</span>
       </div>
       <div className="profile-links">
         <Link to="/wishlist">Wishlist</Link>
