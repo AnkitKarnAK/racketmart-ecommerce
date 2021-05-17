@@ -3,9 +3,12 @@ import { checkStatus } from "../context/data-reducer";
 import deleteIcon from "../assests/trash.svg";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { addOrRemoveProductFromWishlist } from "../api/api-request";
+import { useAuthContext } from "../context/auth-context";
 
-export const WishlistItem = ({ wishlistItem }) => {
+export const WishlistItem = ({ wishlistItem, activeStatus }) => {
   const { dispatch, state } = useDataContext();
+  const { userId } = useAuthContext();
   return (
     <div className="card-container">
       <div
@@ -24,8 +27,17 @@ export const WishlistItem = ({ wishlistItem }) => {
         <div
           className="delete-icon card-delete"
           onClick={() => {
-            dispatch({ type: "ADD_TO_WISHLIST", payload: wishlistItem });
-            toast.error(`${wishlistItem.name} removed from Wishlist`);
+            (async () => {
+              const { response } = await addOrRemoveProductFromWishlist({
+                userId,
+                productItem: wishlistItem,
+              });
+              dispatch({
+                type: "GET_WISHLIST",
+                payload: response.data.wishlist,
+              });
+              toast.error(`${wishlistItem.name} removed from Wishlist`);
+            })();
           }}
         >
           <img src={deleteIcon} alt="" />

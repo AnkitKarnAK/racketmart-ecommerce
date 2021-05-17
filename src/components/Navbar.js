@@ -9,7 +9,10 @@ import badmintonSvgIcon from "../assests/badminton.svg";
 import { useAuthContext } from "../context/auth-context";
 
 export const Navbar = () => {
-  const { wishlistedItems, cartItems } = useDataContext();
+  const {
+    cartItems,
+    state: { itemsInWishlist },
+  } = useDataContext();
   const { isUserLogin, logoutUser } = useAuthContext();
 
   return (
@@ -91,8 +94,8 @@ export const Navbar = () => {
                     Wishlist
                   </NavLink>
                 </button>
-                {wishlistedItems.length > 0 && (
-                  <div className="icon-badge">{wishlistedItems.length}</div>
+                {itemsInWishlist?.length > 0 && (
+                  <div className="icon-badge">{itemsInWishlist?.length}</div>
                 )}
               </div>
               <div className="button-badge-container">

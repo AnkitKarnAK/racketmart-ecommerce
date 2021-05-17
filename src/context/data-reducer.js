@@ -3,6 +3,12 @@ export const dataReducer = (state, action) => {
     case "GET_PRODUCTS":
       return { ...state, products: action.payload };
 
+    case "GET_WISHLIST":
+      return { ...state, itemsInWishlist: action.payload };
+
+    case "GET_CART":
+      return { ...state, itemsInCart: action.payload };
+
     case "SEARCH_FILTER":
       return { ...state, searchedProduct: action.payload };
 
@@ -96,6 +102,13 @@ export const dataReducer = (state, action) => {
 export const isAlreadyAdded = (itemsArray, id) => {
   for (let itemInArray of itemsArray) {
     if (itemInArray._id === id) return true;
+  }
+  return false;
+};
+
+export const isAlreadyAdded2 = (itemsArray, id) => {
+  if (itemsArray) {
+    return itemsArray.find((item) => item.productId._id === id);
   }
   return false;
 };

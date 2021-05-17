@@ -14,9 +14,11 @@ import Error404 from "./components/Error404";
 import Login from "./components/Login";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Profile from "./components/Profile";
+import { useAuthContext } from "./context/auth-context";
 
 function App() {
-  const { dispatch } = useDataContext();
+  const { state, dispatch } = useDataContext();
+  const { isUserLogin, userId } = useAuthContext();
 
   useEffect(() => {
     (async () => {
@@ -32,6 +34,36 @@ function App() {
       }
     })();
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isUserLogin) {
+      (async () => {
+        // try {
+        //   const { response } = await getProductsFromServer({
+        //     url: `https://racketapi.herokuapp.com/carts/${userId}`,
+        //     requestType: "GET",
+        //   });
+
+        //   dispatch({ type: "GET_CART", payload: response.data.cart });
+        // } catch (error) {
+        //   console.log(error);
+        // }
+
+        try {
+          const { response } = await getProductsFromServer({
+            url: `https://racketapi.herokuapp.com/wishlists/${userId}`,
+            requestType: "GET",
+          });
+
+          dispatch({ type: "GET_WISHLIST", payload: response.data.wishlist });
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [isUserLogin, userId, dispatch]);
+
+  console.log(state.itemsInWishlist);
 
   return (
     <div className="App">

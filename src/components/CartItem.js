@@ -2,11 +2,15 @@ import heartSolid from "../assests/heart-solid.svg";
 import heartOutline from "../assests/heart-outline.svg";
 import deleteIcon from "../assests/trash.svg";
 import { useDataContext } from "../context/data-context";
-import { checkStatus } from "../context/data-reducer";
+import { isAlreadyAdded2 } from "../context/data-reducer";
 import { toast } from "react-toastify";
+import { useAuthContext } from "../context/auth-context";
+import { addOrRemoveProductFromWishlist } from "../api/api-request";
 
 export const CartItem = ({ cartItem }) => {
   const { state, dispatch } = useDataContext();
+  const { userId } = useAuthContext();
+
   return (
     <div className="card-container-horizontal">
       <div className="card-horizontal-image">
@@ -14,12 +18,21 @@ export const CartItem = ({ cartItem }) => {
       </div>
       <div className="card-badge">New</div>
 
-      {checkStatus(state.wishlistedItemsWithStatus, cartItem._id) ? (
+      {isAlreadyAdded2(state.itemsInWishlist, cartItem._id) ? (
         <div
           className="wishlist-icon-container"
           onClick={() => {
-            dispatch({ type: "ADD_TO_WISHLIST", payload: cartItem });
-            toast.dark(`${cartItem.name} remove from Wishlist`);
+            (async () => {
+              const { response } = await addOrRemoveProductFromWishlist({
+                userId,
+                productItem: cartItem,
+              });
+              dispatch({
+                type: "GET_WISHLIST",
+                payload: response.data.wishlist,
+              });
+              toast.dark(`${CartItem.name} removed from Wishlist`);
+            })();
           }}
         >
           <img src={heartSolid} alt="liked" className="wishlist-icon" />
@@ -28,8 +41,17 @@ export const CartItem = ({ cartItem }) => {
         <div
           className="wishlist-icon-container"
           onClick={() => {
-            dispatch({ type: "ADD_TO_WISHLIST", payload: cartItem });
-            toast.info(`${cartItem.name} added to Wishlist`);
+            (async () => {
+              const { response } = await addOrRemoveProductFromWishlist({
+                userId,
+                productItem: cartItem,
+              });
+              dispatch({
+                type: "GET_WISHLIST",
+                payload: response.data.wishlist,
+              });
+              toast.info(`${CartItem.name} added to Wishlist`);
+            })();
           }}
         >
           <img src={heartOutline} alt="like" className="wishlist-icon" />

@@ -4,14 +4,18 @@ import WishlistEmpty from "./WishlistEmpty";
 import { WishlistItem } from "./WishlistItem";
 
 const Wishlist = () => {
-  const { wishlistedItems } = useDataContext();
+  const { state } = useDataContext();
 
   return (
     <div>
-      {wishlistedItems.length > 0 ? (
+      {state.itemsInWishlist?.length > 0 ? (
         <div className="wishlist-container">
-          {wishlistedItems.map((item) => (
-            <WishlistItem key={item._id} wishlistItem={item} />
+          {state.itemsInWishlist.map((item) => (
+            <WishlistItem
+              key={item._id}
+              wishlistItem={item.productId}
+              activeStatus={item.active}
+            />
           ))}
         </div>
       ) : (
