@@ -575,12 +575,23 @@ ins{
 
 .profile-links a, .profile-links a:visited{
     font-size: 1.5rem;
+    display: flex;
     margin: 0.5rem 0 0.5rem 0.5rem;
-    display: block;
     color: var(--dark-color);
+    align-items: flex-end;
 }
 .profile-links a:hover{
     color: var(--primary-color);
+}
+
+.profile-links-content{
+    font-size: 1.2rem;
+    width: 100%;
+    margin-right: 30%;
+    text-align: right;
+}
+.profile-links:hover .profile-links-content{
+    color: black;
 }
 
 .profile-container .profile-logout-container{
@@ -785,4 +796,9 @@ ins{
     #menuToggle{
         display: none;
     }
+
+    .profile-links-content{
+        margin-right: 50%;
+    }
+    
 }

@@ -41,14 +41,17 @@ export const dataReducer = (state, action) => {
       };
 
     case "ADD_TO_CART":
-      return isAlreadyAdded(state.itemsInCart, action.payload._id)
+      return isAlreadyAdded(state.cartItemsWithStatus, action.payload._id)
         ? {
             ...state,
-            itemsInCart: toggleStatus(state.itemsInCart, action.payload._id),
+            cartItemsWithStatus: toggleStatus(
+              state.cartItemsWithStatus,
+              action.payload._id
+            ),
           }
         : {
             ...state,
-            itemsInCart: addNewItem(state.itemsInCart, {
+            cartItemsWithStatus: addNewItem(state.cartItemsWithStatus, {
               ...action.payload,
               status: { exists: true },
             }),
@@ -77,7 +80,7 @@ export const dataReducer = (state, action) => {
     case "INCREMENT_CART_QUANTITY":
       return {
         ...state,
-        itemsInCart: state.itemsInCart.map((item) =>
+        cartItemsWithStatus: state.cartItemsWithStatus.map((item) =>
           item._id === action.payload._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
@@ -87,7 +90,7 @@ export const dataReducer = (state, action) => {
     case "DECREMENT_CART_QUANTITY":
       return {
         ...state,
-        itemsInCart: state.itemsInCart.map((item) =>
+        cartItemsWithStatus: state.cartItemsWithStatus.map((item) =>
           item._id === action.payload._id
             ? { ...item, quantity: item.quantity - 1 }
             : item

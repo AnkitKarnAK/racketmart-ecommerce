@@ -10,8 +10,7 @@ import { useAuthContext } from "../context/auth-context";
 
 export const Navbar = () => {
   const {
-    cartItems,
-    state: { itemsInWishlist },
+    state: { itemsInWishlist, itemsInCart },
   } = useDataContext();
   const { isUserLogin, logoutUser } = useAuthContext();
 
@@ -109,8 +108,8 @@ export const Navbar = () => {
                     Cart
                   </NavLink>
                 </button>
-                {cartItems.length > 0 && (
-                  <div className="icon-badge">{cartItems.length}</div>
+                {itemsInCart?.length > 0 && (
+                  <div className="icon-badge">{itemsInCart?.length}</div>
                 )}
               </div>
               <div className="button-badge-container display-toggle">

@@ -9,7 +9,7 @@ import { addOrRemoveProductFromWishlist } from "../api/api-request";
 import { useState } from "react";
 import Loader from "react-loader-spinner";
 
-export const CartItem = ({ cartItem }) => {
+export const CartItem = ({ cartItem, quantity }) => {
   const { state, dispatch } = useDataContext();
   const { userId } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -80,7 +80,7 @@ export const CartItem = ({ cartItem }) => {
             </div>
           </div>
           <div className="cart-buttons">
-            {cartItem.quantity > 1 ? (
+            {quantity > 1 ? (
               <button
                 className="count-button button-secondary"
                 onClick={() => {
@@ -103,7 +103,7 @@ export const CartItem = ({ cartItem }) => {
                 <img src={deleteIcon} alt="" />
               </div>
             )}
-            <div className="cartitem-quantity">{cartItem.quantity}</div>
+            <div className="cartitem-quantity">{quantity}</div>
             <button
               className="button-secondary count-button"
               onClick={() => {

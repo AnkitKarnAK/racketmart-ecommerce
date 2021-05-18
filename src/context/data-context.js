@@ -11,6 +11,7 @@ export const DataProvider = ({ children }) => {
     itemsInCart: [],
     itemsInWishlist: [],
     wishlistedItemsWithStatus: [],
+    cartItemsWithStatus: [],
     sortBy: null,
     includeOutOfStock: true,
     showFastDelivery: true,
@@ -22,8 +23,8 @@ export const DataProvider = ({ children }) => {
     checkStatus(state.wishlistedItemsWithStatus, item._id)
   );
 
-  const cartItems = state.itemsInCart.filter((item) =>
-    checkStatus(state.itemsInCart, item._id)
+  const cartItems = state.cartItemsWithStatus.filter((item) =>
+    checkStatus(state.cartItemsWithStatus, item._id)
   );
 
   return (

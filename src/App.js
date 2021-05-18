@@ -38,16 +38,16 @@ function App() {
   useEffect(() => {
     if (isUserLogin) {
       (async () => {
-        // try {
-        //   const { response } = await getProductsFromServer({
-        //     url: `https://racketapi.herokuapp.com/carts/${userId}`,
-        //     requestType: "GET",
-        //   });
+        try {
+          const { response } = await getProductsFromServer({
+            url: `https://racketapi.herokuapp.com/carts/${userId}`,
+            requestType: "GET",
+          });
 
-        //   dispatch({ type: "GET_CART", payload: response.data.cart });
-        // } catch (error) {
-        //   console.log(error);
-        // }
+          dispatch({ type: "GET_CART", payload: response.data.cart });
+        } catch (error) {
+          console.log(error);
+        }
 
         try {
           const { response } = await getProductsFromServer({
@@ -63,7 +63,7 @@ function App() {
     }
   }, [isUserLogin, userId, dispatch]);
 
-  console.log(state.itemsInWishlist);
+  console.log(state.itemsInCart);
 
   return (
     <div className="App">

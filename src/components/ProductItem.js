@@ -1,5 +1,5 @@
 import { useDataContext } from "../context/data-context";
-import { checkStatus, isAlreadyAdded2 } from "../context/data-reducer";
+import { isAlreadyAdded2 } from "../context/data-reducer";
 import { Link, useNavigate } from "react-router-dom";
 import heartOutline from "../assests/heart-outline-bold.svg";
 import heartSolid from "../assests/heart-solid.svg";
@@ -110,7 +110,7 @@ export const ProductItem = ({ productItem }) => {
                 : "Delivery : 3 days minimum"}
             </div>
           </div>
-          {checkStatus(state.itemsInCart, productItem._id) ? (
+          {isAlreadyAdded2(state.itemsInCart, productItem._id) ? (
             <Link to="/cart">
               <button className="button-secondary link-button">
                 Go to Cart

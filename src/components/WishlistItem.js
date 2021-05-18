@@ -1,5 +1,5 @@
 import { useDataContext } from "../context/data-context";
-import { checkStatus } from "../context/data-reducer";
+import { isAlreadyAdded2 } from "../context/data-reducer";
 import deleteIcon from "../assests/trash.svg";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -63,7 +63,7 @@ export const WishlistItem = ({ wishlistItem, activeStatus }) => {
                 : "Delivery : 3 days minimum"}
             </div>
           </div>
-          {checkStatus(state.itemsInCart, wishlistItem._id) ? (
+          {isAlreadyAdded2(state.itemsInCart, wishlistItem._id) ? (
             <Link to="/cart">
               <button className="button-secondary link-button">
                 Already in Cart

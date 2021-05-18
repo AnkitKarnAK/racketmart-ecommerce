@@ -2,18 +2,22 @@ import React from "react";
 import { useDataContext } from "../context/data-context";
 
 function CartDetails() {
-  const { cartItems } = useDataContext();
+  const {
+    state: { itemsInCart },
+  } = useDataContext();
 
-  const totalItems = cartItems.reduce((acc, val) => {
+  const totalItems = itemsInCart?.reduce((acc, val) => {
     return val.quantity + acc;
   }, 0);
 
-  const totalItemsPrice = cartItems.reduce((acc, val) => {
-    return val.price * val.quantity + acc;
+  const totalItemsPrice = itemsInCart?.reduce((acc, val) => {
+    return val.productId.price * val.quantity + acc;
   }, 0);
 
   const totalPrice =
     totalItemsPrice > 499 ? totalItemsPrice : totalItemsPrice + 49;
+
+  console.log(itemsInCart);
 
   return (
     <>
@@ -30,7 +34,7 @@ function CartDetails() {
           </div>
           <div className="item-detail-content">
             <div className="item-detail-key">Unique Items</div>
-            <div className="item-detail-value">{cartItems.length}</div>
+            <div className="item-detail-value">{itemsInCart?.length}</div>
           </div>
           <div className="item-detail-content">
             <div className="item-detail-key">Delivery Charges</div>
