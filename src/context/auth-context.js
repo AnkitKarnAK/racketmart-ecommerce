@@ -32,8 +32,6 @@ export const AuthProvider = ({ children }) => {
         }
       );
 
-      console.log(response.data);
-
       if (response.status === 200) {
         localStorage?.setItem(
           "login",

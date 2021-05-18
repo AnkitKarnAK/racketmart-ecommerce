@@ -29,7 +29,7 @@ export const addOrRemoveProductFromWishlist = async ({
       return { response: res };
     }
   } catch (err) {
-    console.log(
+    console.error(
       "error occured while adding or removing product from wishlist",
       err
     );

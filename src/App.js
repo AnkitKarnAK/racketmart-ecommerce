@@ -18,7 +18,7 @@ import { useAuthContext } from "./context/auth-context";
 import Signup from "./components/Signup";
 
 function App() {
-  const { state, dispatch } = useDataContext();
+  const { dispatch } = useDataContext();
   const { isUserLogin, userId } = useAuthContext();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function App() {
 
           dispatch({ type: "GET_CART", payload: response.data.cart });
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
 
         try {
@@ -58,7 +58,7 @@ function App() {
 
           dispatch({ type: "GET_WISHLIST", payload: response.data.wishlist });
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       })();
     }

@@ -17,8 +17,6 @@ function CartDetails() {
   const totalPrice =
     totalItemsPrice > 499 ? totalItemsPrice : totalItemsPrice + 49;
 
-  console.log(itemsInCart);
-
   return (
     <>
       <div className="cart-details card-container-horizontal">
