@@ -526,6 +526,10 @@ ins{
     flex-direction: column;
     padding: 1rem;
 }
+.login-form .signup-email-input{
+    margin-top: 1rem;
+}
+
 .login-form .login-password-input{
     margin-top: 1rem;
 }

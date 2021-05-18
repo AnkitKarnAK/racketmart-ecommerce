@@ -5,7 +5,10 @@ import heartOutline from "../assests/heart-outline-bold.svg";
 import heartSolid from "../assests/heart-solid.svg";
 import { toast } from "react-toastify";
 import { useAuthContext } from "../context/auth-context";
-import { addOrRemoveProductFromWishlist } from "../api/api-request";
+import {
+  addOrRemoveProductFromWishlist,
+  addProductToCart,
+} from "../api/api-request";
 import { useState } from "react";
 import Loader from "react-loader-spinner";
 
@@ -125,8 +128,21 @@ export const ProductItem = ({ productItem }) => {
                   : "button-primary button-disabled"
               }
               onClick={() => {
-                dispatch({ type: "ADD_TO_CART", payload: productItem });
-                toast.success(`${productItem.name} added to Cart`);
+                isUserLogin
+                  ? (async () => {
+                      setIsLoading(true);
+                      const { response } = await addProductToCart({
+                        userId,
+                        productItem,
+                      });
+                      dispatch({
+                        type: "GET_CART",
+                        payload: response.data.cart,
+                      });
+                      setIsLoading(false);
+                      toast.success(`${productItem.name} added to Cart`);
+                    })()
+                  : navigate("/login");
               }}
             >
               Add to Cart

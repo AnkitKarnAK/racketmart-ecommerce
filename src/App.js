@@ -15,6 +15,7 @@ import Login from "./components/Login";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Profile from "./components/Profile";
 import { useAuthContext } from "./context/auth-context";
+import Signup from "./components/Signup";
 
 function App() {
   const { state, dispatch } = useDataContext();
@@ -63,8 +64,6 @@ function App() {
     }
   }, [isUserLogin, userId, dispatch]);
 
-  console.log(state.itemsInCart);
-
   return (
     <div className="App">
       <Navbar />
@@ -72,6 +71,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<Error404 />} />
         <PrivateRoute path="/cart" element={<Cart />} />
         <PrivateRoute path="/wishlist" element={<Wishlist />} />

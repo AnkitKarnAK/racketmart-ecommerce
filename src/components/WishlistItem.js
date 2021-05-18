@@ -3,7 +3,10 @@ import { isAlreadyAdded2 } from "../context/data-reducer";
 import deleteIcon from "../assests/trash.svg";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { addOrRemoveProductFromWishlist } from "../api/api-request";
+import {
+  addOrRemoveProductFromWishlist,
+  addProductToCart,
+} from "../api/api-request";
 import { useAuthContext } from "../context/auth-context";
 import { useState } from "react";
 import Loader from "react-loader-spinner";
@@ -78,9 +81,30 @@ export const WishlistItem = ({ wishlistItem, activeStatus }) => {
                   : "button-primary button-disabled"
               }
               onClick={() => {
-                dispatch({ type: "ADD_TO_CART", payload: wishlistItem });
-                dispatch({ type: "ADD_TO_WISHLIST", payload: wishlistItem });
-                toast.success(`${wishlistItem.name} moved to Cart`);
+                (async () => {
+                  setIsLoading(true);
+                  const { response: cartResponse } = await addProductToCart({
+                    userId,
+                    productItem: wishlistItem,
+                  });
+                  const { response: wishlistResponse } =
+                    await addOrRemoveProductFromWishlist({
+                      userId,
+                      productItem: wishlistItem,
+                    });
+
+                  dispatch({
+                    type: "GET_CART",
+                    payload: cartResponse.data.cart,
+                  });
+                  dispatch({
+                    type: "GET_WISHLIST",
+                    payload: wishlistResponse.data.wishlist,
+                  });
+
+                  setIsLoading(false);
+                  toast.success(`${wishlistItem.name} moved to Cart`);
+                })();
               }}
             >
               Move to Cart

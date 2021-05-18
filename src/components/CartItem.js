@@ -5,7 +5,12 @@ import { useDataContext } from "../context/data-context";
 import { isAlreadyAdded2 } from "../context/data-reducer";
 import { toast } from "react-toastify";
 import { useAuthContext } from "../context/auth-context";
-import { addOrRemoveProductFromWishlist } from "../api/api-request";
+import {
+  addOrRemoveProductFromWishlist,
+  decreaseProductQtyInCart,
+  increaseProductQtyInCart,
+  removeProductFromCart,
+} from "../api/api-request";
 import { useState } from "react";
 import Loader from "react-loader-spinner";
 
@@ -84,10 +89,19 @@ export const CartItem = ({ cartItem, quantity }) => {
               <button
                 className="count-button button-secondary"
                 onClick={() => {
-                  dispatch({
-                    type: "DECREMENT_CART_QUANTITY",
-                    payload: cartItem,
-                  });
+                  (async () => {
+                    setIsLoading(true);
+                    const { response } = await decreaseProductQtyInCart({
+                      userId,
+                      productItem: cartItem,
+                      productQuantity: quantity,
+                    });
+                    dispatch({
+                      type: "GET_CART",
+                      payload: response.data.cart,
+                    });
+                    setIsLoading(false);
+                  })();
                 }}
               >
                 -
@@ -96,8 +110,19 @@ export const CartItem = ({ cartItem, quantity }) => {
               <div
                 className="delete-icon"
                 onClick={() => {
-                  dispatch({ type: "ADD_TO_CART", payload: cartItem });
-                  toast.error(`${cartItem.name} removed from Cart`);
+                  (async () => {
+                    setIsLoading(true);
+                    const { response } = await removeProductFromCart({
+                      userId,
+                      productItem: cartItem,
+                    });
+                    dispatch({
+                      type: "GET_CART",
+                      payload: response.data.cart,
+                    });
+                    setIsLoading(false);
+                    toast.error(`${cartItem.name} removed from Cart`);
+                  })();
                 }}
               >
                 <img src={deleteIcon} alt="" />
@@ -107,10 +132,19 @@ export const CartItem = ({ cartItem, quantity }) => {
             <button
               className="button-secondary count-button"
               onClick={() => {
-                dispatch({
-                  type: "INCREMENT_CART_QUANTITY",
-                  payload: cartItem,
-                });
+                (async () => {
+                  setIsLoading(true);
+                  const { response } = await increaseProductQtyInCart({
+                    userId,
+                    productItem: cartItem,
+                    productQuantity: quantity,
+                  });
+                  dispatch({
+                    type: "GET_CART",
+                    payload: response.data.cart,
+                  });
+                  setIsLoading(false);
+                })();
               }}
             >
               +
@@ -118,8 +152,19 @@ export const CartItem = ({ cartItem, quantity }) => {
             <button
               className="remove-cart-button button-primary"
               onClick={() => {
-                dispatch({ type: "ADD_TO_CART", payload: cartItem });
-                toast.error(`${cartItem.name} removed from Cart`);
+                (async () => {
+                  setIsLoading(true);
+                  const { response } = await removeProductFromCart({
+                    userId,
+                    productItem: cartItem,
+                  });
+                  dispatch({
+                    type: "GET_CART",
+                    payload: response.data.cart,
+                  });
+                  setIsLoading(false);
+                  toast.error(`${cartItem.name} removed from Cart`);
+                })();
               }}
             >
               Remove
