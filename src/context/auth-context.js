@@ -45,20 +45,11 @@ export const AuthProvider = ({ children }) => {
         setIsUserLogin(true);
         setUsername(response.data.user.name);
         setUserId(response.data.user._id);
-
-        // localStorage?.setItem("userData", JSON.stringify(data.user));
       }
     } catch (err) {
       return err.response;
     }
   };
-
-  // const loginWithCredential = (email, password) => {
-  //   if (email === "admin@gmail.com" && password === "Admin@123") {
-  //     setIsUserLogin(true);
-  //     localStorage?.setItem("login", JSON.stringify({ isUserLoggedIn: true }));
-  //   }
-  // };
 
   const logoutUser = () => {
     localStorage?.removeItem("login");
@@ -66,9 +57,47 @@ export const AuthProvider = ({ children }) => {
     navigate("/products");
   };
 
+  const signupNewUser = async (email, password, name) => {
+    try {
+      const response = await axios.post(
+        "https://racketapi.herokuapp.com/users",
+        {
+          name: name,
+          email: email.toLowerCase(),
+          password: password,
+        }
+      );
+
+      if (response.status === 201) {
+        localStorage?.setItem(
+          "login",
+          JSON.stringify({
+            isUserLoggedIn: true,
+            username: response.data.user.name,
+            userId: response.data.user._id,
+          })
+        );
+
+        setIsUserLogin(true);
+        setUsername(response.data.user.name);
+        setUserId(response.data.user._id);
+      }
+    } catch (err) {
+      console.error(err.response);
+      return err.response;
+    }
+  };
+
   return (
     <AuthContext.Provider
-      value={{ isUserLogin, loginUser, logoutUser, username, userId }}
+      value={{
+        isUserLogin,
+        loginUser,
+        logoutUser,
+        signupNewUser,
+        username,
+        userId,
+      }}
     >
       {children}
     </AuthContext.Provider>
