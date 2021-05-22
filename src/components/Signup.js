@@ -40,7 +40,7 @@ const Signup = () => {
     if (/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(userEmail)) {
       setEmailError("");
     } else {
-      setEmailError("• Not a vaild email");
+      setEmailError("• Not a valid email");
     }
   };
 

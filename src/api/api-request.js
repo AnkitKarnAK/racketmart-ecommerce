@@ -30,7 +30,7 @@ export const addOrRemoveProductFromWishlist = async ({
     }
   } catch (err) {
     console.error(
-      "error occured while adding or removing product from wishlist",
+      "error occurred while adding or removing product from wishlist",
       err
     );
   }
@@ -50,7 +50,7 @@ export const addProductToCart = async ({ productItem, userId }) => {
       return { response: res };
     }
   } catch (err) {
-    console.error("error occured ", err);
+    console.error("error occurred ", err);
   }
 };
 
@@ -72,7 +72,7 @@ export const increaseProductQtyInCart = async ({
       return { response: res };
     }
   } catch (err) {
-    console.error("error occured ", err);
+    console.error("error occurred ", err);
   }
 };
 
@@ -94,7 +94,7 @@ export const decreaseProductQtyInCart = async ({
       return { response: res };
     }
   } catch (err) {
-    console.error("error occured ", err);
+    console.error("error occurred ", err);
   }
 };
 
@@ -112,6 +112,6 @@ export const removeProductFromCart = async ({ productItem, userId }) => {
       return { response: res };
     }
   } catch (err) {
-    console.error("error occured ", err);
+    console.error("error occurred ", err);
   }
 };

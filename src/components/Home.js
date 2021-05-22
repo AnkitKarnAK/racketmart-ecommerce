@@ -27,7 +27,7 @@ const Home = () => {
           </Link>
           <Link to="/products">
             <div className="grid-item-image">
-              <img src={productImage2} alt="Badmintion Racket with bag" />
+              <img src={productImage2} alt="Badminton Racket with bag" />
             </div>
           </Link>
           <Link to="/products">
