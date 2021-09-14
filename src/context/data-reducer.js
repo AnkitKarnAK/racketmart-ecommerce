@@ -3,6 +3,15 @@ export const dataReducer = (state, action) => {
     case "GET_PRODUCTS":
       return { ...state, products: action.payload };
 
+    case "GET_WISHLIST":
+      return { ...state, itemsInWishlist: action.payload };
+
+    case "GET_CART":
+      return { ...state, itemsInCart: action.payload };
+
+    case "SEARCH_FILTER":
+      return { ...state, searchedProduct: action.payload };
+
     case "SORT_BY":
       return {
         ...state,
@@ -18,35 +27,43 @@ export const dataReducer = (state, action) => {
     case "TOGGLE_DELIVERY":
       return { ...state, showFastDelivery: !state.showFastDelivery };
 
+    case "SET_PRICE_RANGE":
+      return { ...state, priceRange: action.payload };
+
     case "CLEAR_FILTER":
       return {
         ...state,
         sortBy: null,
         includeOutOfStock: false,
         showFastDelivery: false,
+        priceRange: 2500,
+        searchedProduct: "",
       };
 
     case "ADD_TO_CART":
-      return isAlreadyAdded(state.itemsInCart, action.payload.id)
+      return isAlreadyAdded(state.cartItemsWithStatus, action.payload._id)
         ? {
             ...state,
-            itemsInCart: toggleStatus(state.itemsInCart, action.payload.id),
+            cartItemsWithStatus: toggleStatus(
+              state.cartItemsWithStatus,
+              action.payload._id
+            ),
           }
         : {
             ...state,
-            itemsInCart: addNewItem(state.itemsInCart, {
+            cartItemsWithStatus: addNewItem(state.cartItemsWithStatus, {
               ...action.payload,
               status: { exists: true },
             }),
           };
 
     case "ADD_TO_WISHLIST":
-      return isAlreadyAdded(state.wishlistedItemsWithStatus, action.payload.id)
+      return isAlreadyAdded(state.wishlistedItemsWithStatus, action.payload._id)
         ? {
             ...state,
             wishlistedItemsWithStatus: toggleStatus(
               state.wishlistedItemsWithStatus,
-              action.payload.id
+              action.payload._id
             ),
           }
         : {
@@ -63,8 +80,8 @@ export const dataReducer = (state, action) => {
     case "INCREMENT_CART_QUANTITY":
       return {
         ...state,
-        itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
+        cartItemsWithStatus: state.cartItemsWithStatus.map((item) =>
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
@@ -73,8 +90,8 @@ export const dataReducer = (state, action) => {
     case "DECREMENT_CART_QUANTITY":
       return {
         ...state,
-        itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
+        cartItemsWithStatus: state.cartItemsWithStatus.map((item) =>
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         ),
@@ -87,14 +104,21 @@ export const dataReducer = (state, action) => {
 
 export const isAlreadyAdded = (itemsArray, id) => {
   for (let itemInArray of itemsArray) {
-    if (itemInArray.id === id) return true;
+    if (itemInArray._id === id) return true;
+  }
+  return false;
+};
+
+export const isAlreadyAdded2 = (itemsArray, id) => {
+  if (itemsArray) {
+    return itemsArray.find((item) => item.productId._id === id);
   }
   return false;
 };
 
 export const toggleStatus = (itemsArray, id) => {
   return itemsArray.map((item) => {
-    if (item.id === id) {
+    if (item._id === id) {
       return { ...item, status: { exists: !item.status.exists } };
     } else {
       return item;
@@ -109,7 +133,7 @@ export const addNewItem = (itemsArray, item) => [
 
 export const checkStatus = (itemsArray, id) => {
   for (let itemInArray of itemsArray) {
-    if (itemInArray.id === id && itemInArray.status.exists) return true;
+    if (itemInArray._id === id && itemInArray.status.exists) return true;
   }
   return false;
 };

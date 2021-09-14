@@ -3,7 +3,13 @@ import { useDataContext } from "../context/data-context";
 function FilterProducts() {
   const {
     dispatch,
-    state: { sortBy, includeOutOfStock, showFastDelivery },
+    state: {
+      sortBy,
+      includeOutOfStock,
+      showFastDelivery,
+      priceRange,
+      searchedProduct,
+    },
   } = useDataContext();
 
   return (
@@ -23,18 +29,30 @@ function FilterProducts() {
           borderStyle: "solid",
         }}
       >
-        <legend>Sort By</legend>
-        <label>
+        <legend>Search</legend>
+        <div className="input-box search-box">
           <input
-            type="radio"
-            name="sort"
-            onChange={() =>
-              dispatch({ type: "SORT_BY", payload: "PRICE_HIGH_TO_LOW" })
+            className="effect-1"
+            type="text"
+            placeholder="Search your product"
+            value={searchedProduct}
+            onChange={(e) =>
+              dispatch({ type: "SEARCH_FILTER", payload: e.target.value })
             }
-            checked={sortBy && sortBy === "PRICE_HIGH_TO_LOW"}
-          ></input>{" "}
-          Price - High to Low
-        </label>
+          />
+          <span className="focus-border"></span>
+        </div>
+      </fieldset>
+
+      <fieldset
+        style={{
+          marginTop: "1rem",
+          borderColor: "#2874f0",
+          borderStyle: "solid",
+        }}
+      >
+        <legend>Sort By</legend>
+
         <label>
           <input
             type="radio"
@@ -45,6 +63,17 @@ function FilterProducts() {
             checked={sortBy && sortBy === "PRICE_LOW_TO_HIGH"}
           ></input>{" "}
           Price - Low to High
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sort"
+            onChange={() =>
+              dispatch({ type: "SORT_BY", payload: "PRICE_HIGH_TO_LOW" })
+            }
+            checked={sortBy && sortBy === "PRICE_HIGH_TO_LOW"}
+          ></input>{" "}
+          Price - High to Low
         </label>
       </fieldset>
 
@@ -74,8 +103,18 @@ function FilterProducts() {
           Fast Delivery Only
         </label>
         <label style={{ display: "block", marginTop: "1rem" }}>
-          Price Range
-          <input type="range" />
+          Maximum Price:
+          <input
+            type="range"
+            min={200}
+            step={100}
+            max={2500}
+            value={priceRange}
+            onChange={(e) =>
+              dispatch({ type: "SET_PRICE_RANGE", payload: e.target.value })
+            }
+          />
+          <span>{priceRange}</span>
         </label>
       </fieldset>
     </div>
