@@ -2,11 +2,25 @@ import { ProductItem } from "./ProductItem";
 
 import { useDataContext } from "../context/data-context";
 import FilterProducts from "./FilterProducts";
+import Loader from "react-loader-spinner";
 
 function Products() {
   const {
-    state: { products, sortBy, includeOutOfStock, showFastDelivery },
+    state: {
+      products,
+      sortBy,
+      includeOutOfStock,
+      showFastDelivery,
+      priceRange,
+      searchedProduct,
+    },
   } = useDataContext();
+
+  function getSearchedData(productList, searchedProduct) {
+    return productList.filter((product) =>
+      product.name.toLowerCase().includes(searchedProduct.toLowerCase())
+    );
+  }
 
   function getSortedData(productList, sortBy) {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
@@ -25,25 +39,40 @@ function Products() {
       .filter(({ inStock }) => (includeOutOfStock ? true : inStock));
   }
 
-  const sortedData = getSortedData(products, sortBy);
+  function getRangedData(productList, priceRange) {
+    return productList.filter(
+      (productItem) => Number(productItem.price) < priceRange
+    );
+  }
+  const searchedData = getSearchedData(products, searchedProduct);
+  const sortedData = getSortedData(searchedData, sortBy);
   const filteredData = getFilteredData(sortedData, {
     includeOutOfStock,
     showFastDelivery,
   });
+  const rangedData = getRangedData(filteredData, priceRange);
 
   return (
-    <div>
-      <FilterProducts />
-      <div className="h2 text-center">
-        Available Products: {filteredData.length}
-      </div>
+    <>
+      {products.length ? (
+        <div>
+          <FilterProducts />
+          <div className="h2 text-center">
+            Available Products: {rangedData.length}
+          </div>
 
-      <div className="product-container">
-        {filteredData.map((item) => {
-          return <ProductItem key={item.id} productItem={item} />;
-        })}
-      </div>
-    </div>
+          <div className="product-container">
+            {rangedData.map((item) => {
+              return <ProductItem key={item._id} productItem={item} />;
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="position-center">
+          <Loader type="ThreeDots" color="#2874f0" height={150} width={150} />
+        </div>
+      )}
+    </>
   );
 }
 

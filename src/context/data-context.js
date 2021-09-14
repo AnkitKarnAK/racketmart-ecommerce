@@ -11,17 +11,20 @@ export const DataProvider = ({ children }) => {
     itemsInCart: [],
     itemsInWishlist: [],
     wishlistedItemsWithStatus: [],
+    cartItemsWithStatus: [],
     sortBy: null,
     includeOutOfStock: true,
     showFastDelivery: true,
+    priceRange: 2500,
+    searchedProduct: "",
   });
 
   const wishlistedItems = state.wishlistedItemsWithStatus.filter((item) =>
-    checkStatus(state.wishlistedItemsWithStatus, item.id)
+    checkStatus(state.wishlistedItemsWithStatus, item._id)
   );
 
-  const cartItems = state.itemsInCart.filter((item) =>
-    checkStatus(state.itemsInCart, item.id)
+  const cartItems = state.cartItemsWithStatus.filter((item) =>
+    checkStatus(state.cartItemsWithStatus, item._id)
   );
 
   return (
