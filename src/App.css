@@ -418,7 +418,7 @@ ins {
   position: relative;
   max-width: 100%;
 }
-.banner-image-container > img {
+.banner-image-container:hover > img {
   opacity: 90%;
 }
 .banner-button-container {
