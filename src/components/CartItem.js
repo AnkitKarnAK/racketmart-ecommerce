@@ -42,7 +42,7 @@ export const CartItem = ({ cartItem, quantity }) => {
                   payload: response.data.wishlist,
                 });
                 setIsLoading(false);
-                toast.dark(`${CartItem.name} removed from Wishlist`);
+                toast.dark(`${cartItem.name} removed from Wishlist`);
               })();
             }}
           >
@@ -63,7 +63,7 @@ export const CartItem = ({ cartItem, quantity }) => {
                   payload: response.data.wishlist,
                 });
                 setIsLoading(false);
-                toast.info(`${CartItem.name} added to Wishlist`);
+                toast.info(`${cartItem.name} added to Wishlist`);
               })();
             }}
           >
