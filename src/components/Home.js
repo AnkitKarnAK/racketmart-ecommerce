@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import bannerImg1 from "../assests/banner.jpg";
-
-import productImage1 from "../assests/home-badminton-1.jpg";
-import productImage2 from "../assests/home-badminton-2.jpg";
-import productImage3 from "../assests/home-shuttle-1.jpg";
+import { landingProducts } from "../utils/landingProducts";
+import { ProductItem } from "./ProductItem";
 
 const Home = () => {
   return (
@@ -19,22 +17,10 @@ const Home = () => {
         <div className="h1 home-content-title">
           Top Badminton Rackets & Shuttle
         </div>
-        <div className="home-content-grid">
-          <Link to="/products">
-            <div className="grid-item-image">
-              <img src={productImage1} alt="Badminton Racket" />
-            </div>
-          </Link>
-          <Link to="/products">
-            <div className="grid-item-image">
-              <img src={productImage2} alt="Badminton Racket with bag" />
-            </div>
-          </Link>
-          <Link to="/products">
-            <div className="grid-item-image">
-              <img src={productImage3} alt="Shuttle" />
-            </div>
-          </Link>
+        <div className="product-container">
+          {landingProducts.map((item) => {
+            return <ProductItem key={item._id} productItem={item} />;
+          })}
         </div>
       </div>
     </div>

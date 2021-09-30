@@ -418,6 +418,9 @@ ins {
   position: relative;
   max-width: 100%;
 }
+.banner-image-container > img {
+  opacity: 90%;
+}
 .banner-button-container {
   position: absolute;
   top: 35%;
