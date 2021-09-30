@@ -26,7 +26,6 @@ const Profile = () => {
           Cart:{" "}
           <span className="profile-links-content">{`${itemsInCart?.length} Products`}</span>
         </Link>
-        <Link to="/address">Address</Link>
       </div>
       <div className="profile-logout-container">
         <button
