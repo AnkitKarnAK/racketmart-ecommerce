@@ -419,7 +419,7 @@ ins {
   max-width: 100%;
 }
 .banner-image-container:hover > img {
-  opacity: 90%;
+  opacity: 0.9;
 }
 .banner-button-container {
   position: absolute;
