@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { useDataContext } from "../context/data-context";
 
 function CartDetails() {
@@ -53,7 +54,14 @@ function CartDetails() {
       </div>
       <div className="order-container">
         <div className="price-title">Price: Rs {totalPrice}</div>
-        <button className="order-button button-primary">Place Order</button>
+        <button
+          className="order-button button-primary"
+          onClick={() => {
+            toast.success("Place order feature is coming soon");
+          }}
+        >
+          Place Order
+        </button>
       </div>
     </>
   );

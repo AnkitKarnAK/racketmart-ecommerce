@@ -100,6 +100,7 @@ export const CartItem = ({ cartItem, quantity }) => {
                       type: "GET_CART",
                       payload: response.data.cart,
                     });
+                    toast.info(`${cartItem.name} quantity decreased`);
                     setIsLoading(false);
                   })();
                 }}
@@ -143,6 +144,7 @@ export const CartItem = ({ cartItem, quantity }) => {
                     type: "GET_CART",
                     payload: response.data.cart,
                   });
+                  toast.dark(`${cartItem.name} quantity increased`);
                   setIsLoading(false);
                 })();
               }}
