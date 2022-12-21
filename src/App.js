@@ -25,7 +25,7 @@ function App() {
     (async () => {
       try {
         const { response } = await getProductsFromServer({
-          url: "https://racketapi.herokuapp.com/products",
+          url: "https://racketapi.up.railway.app/products",
           requestType: "GET",
         });
         dispatch({ type: "GET_PRODUCTS", payload: response.data.products });
@@ -41,7 +41,7 @@ function App() {
       (async () => {
         try {
           const { response } = await getProductsFromServer({
-            url: `https://racketapi.herokuapp.com/carts/${userId}`,
+            url: `https://racketapi.up.railway.app/carts/${userId}`,
             requestType: "GET",
           });
 
@@ -52,7 +52,7 @@ function App() {
 
         try {
           const { response } = await getProductsFromServer({
-            url: `https://racketapi.herokuapp.com/wishlists/${userId}`,
+            url: `https://racketapi.up.railway.app/wishlists/${userId}`,
             requestType: "GET",
           });
 

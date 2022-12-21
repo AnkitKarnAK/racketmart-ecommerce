@@ -20,7 +20,7 @@ export const addOrRemoveProductFromWishlist = async ({
 }) => {
   try {
     const res = await axios.post(
-      `https://racketapi.herokuapp.com/wishlists/${userId}`,
+      `https://racketapi.up.railway.app/wishlists/${userId}`,
       {
         _id: productItem._id,
       }
@@ -39,7 +39,7 @@ export const addOrRemoveProductFromWishlist = async ({
 export const addProductToCart = async ({ productItem, userId }) => {
   try {
     const res = await axios.post(
-      `https://racketapi.herokuapp.com/carts/${userId}`,
+      `https://racketapi.up.railway.app/carts/${userId}`,
       {
         _id: productItem._id,
         quantity: 1,
@@ -61,7 +61,7 @@ export const increaseProductQtyInCart = async ({
 }) => {
   try {
     const res = await axios.post(
-      `https://racketapi.herokuapp.com/carts/${userId}`,
+      `https://racketapi.up.railway.app/carts/${userId}`,
       {
         _id: productItem._id,
         quantity: productQuantity + 1,
@@ -83,7 +83,7 @@ export const decreaseProductQtyInCart = async ({
 }) => {
   try {
     const res = await axios.post(
-      `https://racketapi.herokuapp.com/carts/${userId}`,
+      `https://racketapi.up.railway.app/carts/${userId}`,
       {
         _id: productItem._id,
         quantity: productQuantity - 1,
@@ -101,7 +101,7 @@ export const decreaseProductQtyInCart = async ({
 export const removeProductFromCart = async ({ productItem, userId }) => {
   try {
     const res = await axios.post(
-      `https://racketapi.herokuapp.com/carts/${userId}`,
+      `https://racketapi.up.railway.app/carts/${userId}`,
       {
         _id: productItem._id,
         quantity: 0,
