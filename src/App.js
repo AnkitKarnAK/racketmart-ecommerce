@@ -25,7 +25,7 @@ function App() {
     (async () => {
       try {
         const { response } = await getProductsFromServer({
-          url: "https://racketapi.up.railway.app/products",
+          url: "https://racketapi.onrender.com/products",
           requestType: "GET",
         });
         dispatch({ type: "GET_PRODUCTS", payload: response.data.products });
@@ -41,7 +41,7 @@ function App() {
       (async () => {
         try {
           const { response } = await getProductsFromServer({
-            url: `https://racketapi.up.railway.app/carts/${userId}`,
+            url: `https://racketapi.onrender.com/carts/${userId}`,
             requestType: "GET",
           });
 
@@ -52,7 +52,7 @@ function App() {
 
         try {
           const { response } = await getProductsFromServer({
-            url: `https://racketapi.up.railway.app/wishlists/${userId}`,
+            url: `https://racketapi.onrender.com/wishlists/${userId}`,
             requestType: "GET",
           });
 
